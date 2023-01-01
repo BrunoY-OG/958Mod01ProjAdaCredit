@@ -3,14 +3,20 @@
 ## Dependências:
 
 CsvHelper
+
 Bogus
+
 BetterConsoleTables
+
 GetPass
+
 ConsoleMenuSimple
 
 ## Premissas
 
 Desenvolver o sistema sem utilização de threads, e dentro da ementa do módulo.
+
+Utilização de Interface para possibilitar outras formas de persistência de dados
 
 ## Enunciado
 

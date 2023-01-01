@@ -1,5 +1,6 @@
 ﻿using AdaCredit.Logical.Entities;
 using AdaCredit.Logical.Repositories;
+using AdaCredit.Logical;
 
 namespace AdaCredit.Logical.Services
 {
@@ -12,11 +13,13 @@ namespace AdaCredit.Logical.Services
         public bool ProcessCSVFile(ClientService clientService, string file) {
             if (!File.Exists(Path.Combine(FileHandler.PathToPending, file))) return false;
             try {
+                var dateOnly = file.CSVExtractDateOnly();
+                if (dateOnly.Year == 1) return false;
                 Repository.PrepareTransactionFiles(file, out TransactionFile transactionFile,
                     out TransactionFile completedTransactionFile, out FailedTransactionFile failedTransactionFile);
                 foreach (var line in transactionFile.transactions) {
                     FailedTransactionCSVLine.FailureReason reason =
-                        clientService.ExecuteTransaction(line);
+                        clientService.ExecuteTransaction(line, dateOnly);
                     if (reason == FailedTransactionCSVLine.FailureReason.NotApplicable) {
                         completedTransactionFile.transactions.Add(line);
                     }

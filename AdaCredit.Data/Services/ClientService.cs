@@ -152,13 +152,14 @@ namespace AdaCredit.Logical.Services{
             return true;
         }
 
-        public FailedTransactionCSVLine.FailureReason CheckTransaction(TransactionCSVLine transaction, 
+        public FailedTransactionCSVLine.FailureReason CheckTransaction(TransactionCSVLine transaction,
+                        DateOnly dateOnly, 
                         out Account? destAccount, out Account? originAccount, out decimal feeValue) 
         {
             Repository.LoadClienList();
             destAccount = GetAccount(transaction.destBankCode, transaction.destBranchCode, transaction.destAccount);
             originAccount = GetAccount(transaction.originBankCode, transaction.originBranchCode, transaction.originAccount);
-            feeValue = FeeCalculator.CalculateFee(transaction.value, transaction.transactionType);
+            feeValue = FeeCalculator.CalculateFee(dateOnly, transaction.value, transaction.transactionType);
             if ((destAccount is null) && (originAccount is null))
                 return FailedTransactionCSVLine.FailureReason.InvalidAccount;
             else if ((destAccount != null) && (originAccount != null)) {
@@ -175,8 +176,8 @@ namespace AdaCredit.Logical.Services{
             return FailedTransactionCSVLine.FailureReason.NotApplicable;
         }
 
-        public FailedTransactionCSVLine.FailureReason ExecuteTransaction(TransactionCSVLine transaction) {
-            FailedTransactionCSVLine.FailureReason failureReason = CheckTransaction(transaction, 
+        public FailedTransactionCSVLine.FailureReason ExecuteTransaction(TransactionCSVLine transaction, DateOnly dateOnly) {
+            FailedTransactionCSVLine.FailureReason failureReason = CheckTransaction(transaction, new DateOnly(2022, 11, 30),
                                                                     out Account destAccount, out Account originAccount, 
                                                                     out decimal feeValue);
             if (failureReason != FailedTransactionCSVLine.FailureReason.NotApplicable)

@@ -41,6 +41,35 @@ namespace AdaCredit.Logical {
             return extract.Substring(extract.Length - 8);
         }
 
+        public static int CSVExtractYear(this string csvName) {
+            var extract = csvName.CSVExtractDate();
+            if (int.TryParse(extract, out var year))
+                return year;
+            return -1;
+        }
+        public static int CSVExtractMonth(this string csvName) {
+            var extract = csvName.CSVExtractDate();
+            if (int.TryParse(extract, out var month))
+                return month;
+            return -1;
+        }
+        public static int CSVExtractDay(this string csvName) {
+            var extract = csvName.CSVExtractDate();
+            if (int.TryParse(extract, out var day))
+                return day;
+            return -1;
+        }
+
+        public static DateOnly CSVExtractDateOnly(this string csvName) {
+            var year = CSVExtractYear(csvName);
+            if (year == -1) return new DateOnly(1, 1, 1);
+            var month = CSVExtractMonth(csvName);
+            if (month == -1) return new DateOnly(1, 1, 1); 
+            var day = CSVExtractDay(csvName);
+            if (day == -1) return new DateOnly(1, 1, 1);
+            return new DateOnly(year, month, day);
+        }
+
         public static string CSVExtractBank(this string csvName) {
             var extract = csvName.CSVExtract();
             return extract.Substring(0, extract.Length - 9);

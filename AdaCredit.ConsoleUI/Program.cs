@@ -1,6 +1,7 @@
 ﻿using AdaCredit.ConsoleUI.Display;
 using AdaCredit.Logical.Entities;
 using AdaCredit.Logical.Services;
+using AdaCredit.Logical;
 
 namespace AdaCredit.ConsoleUI {
     public class MainConsole {
