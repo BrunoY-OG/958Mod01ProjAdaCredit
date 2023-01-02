@@ -7,6 +7,7 @@
             InexistentAccount,
             IncompatibleType,
             WrongDirection,
+            NotPertinent,
             NotApplicable
         }
 

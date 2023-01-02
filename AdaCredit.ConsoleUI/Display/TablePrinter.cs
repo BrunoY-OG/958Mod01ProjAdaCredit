@@ -35,6 +35,8 @@ namespace AdaCredit.ConsoleUI.Display {
                 return "Conta inválida";
             else if (reason == FailedTransactionCSVLine.FailureReason.WrongDirection)
                 return "Sentido errado";
+            else if (reason == FailedTransactionCSVLine.FailureReason.NotPertinent)
+                return "Não há ligação direta com a Ada Credit";
             else
                 return "Conta inexistente";
         }

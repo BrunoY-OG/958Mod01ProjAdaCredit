@@ -16,7 +16,14 @@ ConsoleMenuSimple
 
 Desenvolver o sistema sem utilização de threads, e dentro da ementa do módulo.
 
-Utilização de Interface para possibilitar outras formas de persistência de dados
+Utilização de Interface para possibilitar outras formas de persistência de dados.
+
+
+## Concessões relativas ao tempo disponivel
+
+Menor organização do console, mas acredita-se estar legível.
+
+Criador Bogus para os arquivos de transação teve menos revisões.
 
 ## Enunciado
 

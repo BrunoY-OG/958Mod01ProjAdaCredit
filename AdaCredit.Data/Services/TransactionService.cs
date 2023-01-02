@@ -15,8 +15,10 @@ namespace AdaCredit.Logical.Services
             try {
                 var dateOnly = file.CSVExtractDateOnly();
                 if (dateOnly.Year == 1) return false;
-                Repository.PrepareTransactionFiles(file, out TransactionFile transactionFile,
-                    out TransactionFile completedTransactionFile, out FailedTransactionFile failedTransactionFile);
+                if (!Repository.PrepareTransactionFiles(file, out TransactionFile transactionFile,
+                    out TransactionFile completedTransactionFile, out FailedTransactionFile failedTransactionFile))
+                    return false;
+                if (transactionFile is default(TransactionFile)) return false;
                 foreach (var line in transactionFile.transactions) {
                     FailedTransactionCSVLine.FailureReason reason =
                         clientService.ExecuteTransaction(line, dateOnly);

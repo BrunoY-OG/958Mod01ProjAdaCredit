@@ -171,7 +171,10 @@ namespace AdaCredit.Logical.Services{
                 else if (originAccount.Balance < transaction.value + feeValue) return FailedTransactionCSVLine.FailureReason.InsuficientFunds;
             }
             else if ((destAccount != null) && (originAccount == null)) {
-                if (transaction.direction == 0) return FailedTransactionCSVLine.FailureReason.WrongDirection;    
+                if (transaction.direction == 0) return FailedTransactionCSVLine.FailureReason.WrongDirection;
+            }
+            else if ((destAccount == null) && (originAccount == null)) {
+                return FailedTransactionCSVLine.FailureReason.NotPertinent;
             }
             return FailedTransactionCSVLine.FailureReason.NotApplicable;
         }
