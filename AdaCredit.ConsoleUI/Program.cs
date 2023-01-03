@@ -30,6 +30,13 @@ namespace AdaCredit.ConsoleUI {
                 if (EmployeesMenuFunctions.Welcome())
                     Menu.Run();
             }
+
+
+            //var test = "BankB-2-20221201.csv";
+            //Console.WriteLine($"year {test.CSVExtractYear()}");
+            //Console.WriteLine($"month {test.CSVExtractMonth()}");
+            //Console.WriteLine($"day {test.CSVExtractDay()}");
+            //Console.WriteLine($"Date {test.CSVExtractDateOnly()}");
         }
     }
 }

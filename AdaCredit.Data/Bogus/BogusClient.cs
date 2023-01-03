@@ -21,7 +21,7 @@ namespace AdaCredit.Logical.Bogus {
                 do {
                     acc = faker.Random.Replace("#####-#");
                 } while (repo.GetClientByAccountNumber(acc) != null);
-                Account account = new Account { BankCode = "777", BranchCode = "0001", Balance = faker.Finance.Amount(-999m, 999m, 2), Number = acc };
+                Account account = new Account { BankCode = "777", BranchCode = "0001", Balance = faker.Finance.Amount(0, 999m, 2), Number = acc };
                 var genEmployee = new Faker<Client>("pt_BR")
                     .StrictMode(true)
                     .RuleFor(o => o.Name, f => f.Name.FullName())

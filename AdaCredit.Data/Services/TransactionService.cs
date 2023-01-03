@@ -38,7 +38,7 @@ namespace AdaCredit.Logical.Services
         }
 
         public string ProcessTransactions(ClientService clientService) {
-            string[] csvFiles = Repository.PendingNames;
+            var csvFiles = Repository.PendingNames;
             foreach (string csvFile in csvFiles) {
                 if (!ProcessCSVFile(clientService, csvFile))
                     return csvFile;

@@ -3,19 +3,19 @@
 namespace AdaCredit.Logical.Repositories {
     public sealed class TransactionRepository {
 
-        public string[] PendingNames { 
+        public List<string> PendingNames { 
             get {
-                return FileHandler.GetFileNames(FileHandler.PathToPending).Select(f => Path.GetFileName(f)).ToArray();
+                return FileHandler.GetFileNames(FileHandler.PathToPending).Select(f => Path.GetFileName(f)).OrderBy(f => f.CSVExtractDateOnly()).ToList();
             }
         }
-        public string[] CompletedNames {
+        public List<string> CompletedNames {
             get {
-                return FileHandler.GetFileNames(FileHandler.PathToCompleted).Select(f => Path.GetFileName(f)).ToArray();
+                return FileHandler.GetFileNames(FileHandler.PathToCompleted).Select(f => Path.GetFileName(f)).OrderBy(f => f.CSVExtractDateOnly()).ToList();
             }
         }
-        public string[] FailedNames {
+        public List<string> FailedNames {
             get {
-                return FileHandler.GetFileNames(FileHandler.PathToFailed).Select(f => Path.GetFileName(f)).ToArray();
+                return FileHandler.GetFileNames(FileHandler.PathToFailed).Select(f => Path.GetFileName(f)).OrderBy(f => f.CSVExtractDateOnly()).ToList();
             }
         }
 
