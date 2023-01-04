@@ -4,7 +4,8 @@ using BetterConsoles.Colors.Extensions;
 using ConsoleTools;
 using System.Drawing;
 
-namespace AdaCredit.ConsoleUI.Display {
+namespace AdaCredit.ConsoleUI.Display
+{
     public static class ClientMenuFunctions {
         public static ClientService clientService;
 

@@ -9,21 +9,26 @@ using BetterConsoles.Colors;
 using BetterConsoles.Tables.Common;
 
 
-namespace AdaCredit.ConsoleUI {
+namespace AdaCredit.ConsoleUI.Display
+{
 
 
-    internal static class ConsoleUtils {
+    internal static class ConsoleUtils
+    {
 
 
-        public static void AwaitForKey() {
+        public static void AwaitForKey()
+        {
             Console.WriteLine("Pressione qualquer tecla para continuar.");
             Console.ReadKey();
         }
 
 
         //Menu Configs
-        public static Action<MenuConfig> ConfigureMenu(string title, string selector = "--> ", char separator = '/') {
-            return (menuConfig) => {
+        public static Action<MenuConfig> ConfigureMenu(string title, string selector = "--> ", char separator = '/')
+        {
+            return (menuConfig) =>
+            {
                 menuConfig.EnableFilter = false;
                 menuConfig.EnableBreadcrumb = true;
                 menuConfig.SelectedItemBackgroundColor = ConsoleColor.White;
@@ -34,8 +39,10 @@ namespace AdaCredit.ConsoleUI {
             };
         }
 
-        public static Action<MenuConfig> ConfigureList(string title, string selector = "--> ", char separator = '/') {
-            return (menuConfig) => {
+        public static Action<MenuConfig> ConfigureList(string title, string selector = "--> ", char separator = '/')
+        {
+            return (menuConfig) =>
+            {
                 menuConfig.EnableFilter = true;
                 menuConfig.EnableBreadcrumb = true;
                 menuConfig.SelectedItemBackgroundColor = ConsoleColor.White;

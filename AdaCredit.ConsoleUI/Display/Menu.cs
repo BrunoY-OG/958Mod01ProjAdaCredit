@@ -1,9 +1,13 @@
 ﻿using AdaCredit.Logical.Bogus;
 using ConsoleTools;
 
-namespace AdaCredit.ConsoleUI.Display {
+namespace AdaCredit.ConsoleUI.Display
+{
     internal class Menu {
 
+        //A funcionalidade breadcrumbs do ConsoleTools funciona melhor se os menus estiverem dentro de uma mesma função.
+        //Para criar um submenu com dados dinâmicos gerados no momento em que foi chamado, é necessário fazê-lo em uma
+        //nova função
         public static void Run() 
         {
             MainConsole.shutdown = false;

@@ -1,7 +1,8 @@
 ﻿using AdaCredit.Logical.Services;
 using GetPass;
 
-namespace AdaCredit.ConsoleUI.Display {
+namespace AdaCredit.ConsoleUI.Display
+{
     public static class InputReceiver {
 
         public static string AskNewEmail(string tipo) 

@@ -6,7 +6,8 @@ using BetterConsoles.Tables.Builders;
 using BetterConsoles.Colors.Extensions;
 using AdaCredit.Logical.Entities;
 
-namespace AdaCredit.ConsoleUI.Display {
+namespace AdaCredit.ConsoleUI.Display
+{
     internal static class TablePrinter 
     {
 

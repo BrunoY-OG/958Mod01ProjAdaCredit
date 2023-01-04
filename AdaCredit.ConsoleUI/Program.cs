@@ -13,6 +13,13 @@ namespace AdaCredit.ConsoleUI {
         public static bool shutdown = false;
         public static bool IsSetup {
             get {
+                FileHandler.Setup();
+                if (EmployeesMenuFunctions.employeeService is null)
+                    EmployeesMenuFunctions.employeeService = new EmployeeService(employeePersistence);
+                if (ClientMenuFunctions.clientService is null)
+                    ClientMenuFunctions.clientService = new ClientService(clientPersistence);
+                if (TransactionsMenuFunctions.transactionService is null)
+                    TransactionsMenuFunctions.transactionService = new TransactionService();
                 var isEmployeeServiceUp = EmployeesMenuFunctions.employeeService != null;
                 var isClientServiceUp = ClientMenuFunctions.clientService != null;
                 var isTransactionServiceUp = TransactionsMenuFunctions.transactionService != null;
@@ -22,21 +29,11 @@ namespace AdaCredit.ConsoleUI {
 
 
         static void Main(string[] args) {
-            FileHandler.Setup();
-            EmployeesMenuFunctions.employeeService = new EmployeeService(employeePersistence);
-            ClientMenuFunctions.clientService = new ClientService(clientPersistence);
-            TransactionsMenuFunctions.transactionService = new TransactionService();
+            if (!IsSetup) return;
             while (!shutdown) {
                 if (EmployeesMenuFunctions.Welcome())
                     Menu.Run();
             }
-
-
-            //var test = "BankB-2-20221201.csv";
-            //Console.WriteLine($"year {test.CSVExtractYear()}");
-            //Console.WriteLine($"month {test.CSVExtractMonth()}");
-            //Console.WriteLine($"day {test.CSVExtractDay()}");
-            //Console.WriteLine($"Date {test.CSVExtractDateOnly()}");
         }
     }
 }
