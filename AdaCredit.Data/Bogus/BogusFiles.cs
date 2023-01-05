@@ -110,7 +110,7 @@ namespace AdaCredit.Logical.Bogus {
                 .RuleFor(o => o.destAccount, f => f.Random.Replace("######"))
                 .RuleFor(o => o.transactionType, f => f.PickRandomWithout<TransactionCSVLine.TransactionType>())
                 .RuleFor(o => o.direction, f => f.Random.Int(0, 1))
-                .RuleFor(o => o.value, f => f.Finance.Amount(-999m, 999m, 2));
+                .RuleFor(o => o.value, f => f.Finance.Amount(0, 999m, 2));
             return genTransactionLine.Generate();
         }
 
