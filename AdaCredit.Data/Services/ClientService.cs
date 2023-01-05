@@ -160,20 +160,18 @@ namespace AdaCredit.Logical.Services{
             destAccount = GetAccount(transaction.destBankCode, transaction.destBranchCode, transaction.destAccount);
             originAccount = GetAccount(transaction.originBankCode, transaction.originBranchCode, transaction.originAccount);
             feeValue = FeeCalculator.CalculateFee(dateOnly, transaction.value, transaction.transactionType);
-            if ((destAccount is null) && (originAccount is null))
-                return FailedTransactionCSVLine.FailureReason.InvalidAccount;
-            else if ((destAccount != null) && (originAccount != null)) {
+            if ((destAccount != null) && (originAccount != null)) {
                 if (transaction.transactionType != TransactionCSVLine.TransactionType.TEF) return FailedTransactionCSVLine.FailureReason.IncompatibleType;
                 else if (originAccount.Balance < transaction.value + feeValue) return FailedTransactionCSVLine.FailureReason.InsuficientFunds;
             }
-            else if ((destAccount == null) && (originAccount != null)) {
-                if (transaction.direction == 1) return FailedTransactionCSVLine.FailureReason.WrongDirection;
+            else if ((destAccount is null) && (originAccount != null)) {
+                if (transaction.transactionType == TransactionCSVLine.TransactionType.TEF) return FailedTransactionCSVLine.FailureReason.IncompatibleType;
                 else if (originAccount.Balance < transaction.value + feeValue) return FailedTransactionCSVLine.FailureReason.InsuficientFunds;
             }
-            else if ((destAccount != null) && (originAccount == null)) {
-                if (transaction.direction == 0) return FailedTransactionCSVLine.FailureReason.WrongDirection;
+            else if ((destAccount != null) && (originAccount is null)) {
+                if (transaction.transactionType == TransactionCSVLine.TransactionType.TEF) return FailedTransactionCSVLine.FailureReason.IncompatibleType;
             }
-            else if ((destAccount == null) && (originAccount == null)) {
+            else if ((destAccount is null) && (originAccount is null)) {
                 return FailedTransactionCSVLine.FailureReason.NotPertinent;
             }
             return FailedTransactionCSVLine.FailureReason.NotApplicable;

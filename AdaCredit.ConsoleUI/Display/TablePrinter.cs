@@ -34,8 +34,6 @@ namespace AdaCredit.ConsoleUI.Display
                 return "Saldo insuficiente";
             else if (reason == FailedTransactionCSVLine.FailureReason.InvalidAccount)
                 return "Conta inválida";
-            else if (reason == FailedTransactionCSVLine.FailureReason.WrongDirection)
-                return "Sentido errado";
             else if (reason == FailedTransactionCSVLine.FailureReason.NotPertinent)
                 return "Não há ligação direta com a Ada Credit";
             else
@@ -137,10 +135,6 @@ namespace AdaCredit.ConsoleUI.Display
                 .AddColumn("Tipo de transação")
                     .RowsFormat()
                         .ForegroundColor(Color.Yellow)
-                .AddColumn("Direção", rowsFormat: dateFormat)
-                    .RowFormatter<int>((x) => FormatDirection(x))
-                    .RowsFormat()
-                        .Alignment(Alignment.Right)
                 .AddColumn("Valor")
                     .RowFormatter<decimal>((x) => FormatMoney(x))
                     .RowsFormat()
@@ -150,7 +144,7 @@ namespace AdaCredit.ConsoleUI.Display
             foreach (var tra in transactions) 
             {
                 table.AddRow(tra.originBankCode, tra.originBranchCode, tra.originAccount, tra.destBankCode,
-                               tra.destBranchCode, tra.destAccount, tra.transactionType, tra.direction,
+                               tra.destBranchCode, tra.destAccount, tra.transactionType,
                                tra.value);
             }
             Console.WriteLine(table.ToString());
@@ -176,10 +170,6 @@ namespace AdaCredit.ConsoleUI.Display
                 .AddColumn("Tipo de transação")
                     .RowsFormat()
                         .ForegroundColor(Color.Yellow)
-                .AddColumn("Direção", rowsFormat: dateFormat)
-                    .RowFormatter<int>((x) => FormatDirection(x))
-                    .RowsFormat()
-                        .Alignment(Alignment.Right)
                 .AddColumn("Valor")
                     .RowFormatter<decimal>((x) => FormatMoney(x))
                     .RowsFormat()
@@ -193,7 +183,7 @@ namespace AdaCredit.ConsoleUI.Display
             foreach (var tra in transactions) 
             {
                 table.AddRow(tra.originBankCode, tra.originBranchCode, tra.originAccount, tra.destBankCode,
-                               tra.destBranchCode, tra.destAccount, tra.transactionType, tra.direction,
+                               tra.destBranchCode, tra.destAccount, tra.transactionType, 
                                tra.value, tra.failureReason);
             }
             Console.WriteLine(table.ToString());

@@ -6,7 +6,6 @@
             InvalidAccount,
             InexistentAccount,
             IncompatibleType,
-            WrongDirection,
             NotPertinent,
             NotApplicable
         }
@@ -21,8 +20,6 @@
 
         public TransactionCSVLine.TransactionType transactionType { get; set; }
 
-        public int direction { get; set; }
-
         public decimal value { get; set; }
 
         public FailureReason failureReason { get; set; }
@@ -35,7 +32,6 @@
             destBranchCode = line.destBranchCode;
             destAccount = line.destAccount;
             transactionType = line.transactionType;
-            direction = line.direction;
             value = line.value;
             failureReason = reason;
         }
@@ -48,7 +44,6 @@
             destBranchCode = line.destBranchCode;
             destAccount = line.destAccount;
             transactionType = line.transactionType;
-            direction = line.direction;
             value = line.value;
             failureReason = line.failureReason;
         }

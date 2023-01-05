@@ -16,8 +16,6 @@
 
         public TransactionType transactionType { get; set; }
 
-        public int direction { get; set; }
-
         public decimal value { get; set; }
 
     }
